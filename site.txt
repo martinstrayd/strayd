@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- ROOT -->
+  <url>
+    <loc>https://martinstrayd.github.io/strayd/</loc>
+    <priority>1.00</priority>
+  </url>
+
+  <!-- CATALOG -->
+  <url>
+    <loc>https://martinstrayd.github.io/strayd/catalog-strayd/</loc>
+    <priority>0.90</priority>
+  </url>
+
+  <!-- MUSIC -->
+  <url>
+    <loc>https://martinstrayd.github.io/strayd/music-strayd/</loc>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- SYNC -->
+  <url>
+    <loc>https://martinstrayd.github.io/strayd/sync-strayd/</loc>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- VAULT -->
+  <url>
+    <loc>https://martinstrayd.github.io/strayd/vault-strayd/</loc>
+    <priority>0.75</priority>
+  </url>
+
+</urlset>
