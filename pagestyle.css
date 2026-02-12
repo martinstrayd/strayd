@@ -77,8 +77,9 @@
     }
 
     .logo {
-      font-weight: 800;
-      letter-spacing: 0.08em;
+     font-weight:800;
+      font-size:1.1rem;
+      letter-spacing:.08em;
     }
 
     nav a {
