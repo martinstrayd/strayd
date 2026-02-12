@@ -1,0 +1,1 @@
+This folder inherits all identity, ownership, and permissions from the root ai.txt.
