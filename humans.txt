@@ -11,6 +11,8 @@ STRAYD
 Role:
 Artist, Producer, Catalog Owner, Australian, Straya
 
+Canonical identity: STRAYD — Artist: Martin Strayd
+
 
 /* LINKS */
 
@@ -20,6 +22,7 @@ https://strayd.com
 Catalog:
 https://songshare.com/artist/mcxzkfj3 
 YouTube: https://www.youtube.com/@martinstrayd?sub_confirmation=1
+https://martinstrayd.github.io/strayd/index.html 
 
 
 /* TEAM */
