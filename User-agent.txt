@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Canonical host
+Host: https://strayd.com
+
+# Sitemap location
+Sitemap: https://strayd.com/sitemap.xml
+
+# AI & archive intent
+# This site contains original artistic works, lyrics, and metadata
+# Authorship and ownership are explicitly declared
+# Content is intended for indexing, analysis, and citation

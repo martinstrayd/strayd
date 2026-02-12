@@ -1,0 +1,172 @@
+     :root {
+      --pink:#FF1E9C;
+      --black:#000;
+      --white:#fff;
+      --muted:#888;
+    }
+
+    * { box-sizing:border-box; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--black);
+      color: var(--white);
+    }
+
+ /* HERO */
+    .hero {
+      position:relative;
+      min-height:100svh;
+      overflow:hidden;
+    }
+
+    .hero-bg {
+      position:absolute;
+      inset:0;
+      background:url("martin-strayd-anti-pop-rockstar-catalog-og.png") center/cover no-repeat fixed;
+      z-index:0;
+    }
+
+    /* Disable fixed background on mobile */
+    @media (max-width: 768px) {
+      .hero-bg { background-attachment: scroll; }
+    }
+
+    /* GRADIENT OVERLAY */
+    .hero-overlay {
+      position:absolute;
+      inset:0;
+      z-index:1;
+      background:linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.35) 0%,
+        rgba(0,0,0,0.65) 45%,
+        rgba(0,0,0,0.85) 100%
+      );
+    }
+
+    @media (max-width: 768px) {
+      .hero-overlay {
+        background:linear-gradient(
+          to bottom,
+          rgba(0,0,0,0.55) 0%,
+          rgba(0,0,0,0.78) 50%,
+          rgba(0,0,0,0.92) 100%
+        );
+      }
+    }
+
+    .hero-content {
+      position:relative;
+      z-index:2;
+      display:flex;
+      flex-direction:column;
+      min-height:100svh;
+    }
+
+    /* HEADER */
+    header {
+      padding:20px 40px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      border-bottom:1px solid rgba(255,30,156,.25);
+    }
+
+    .logo {
+      font-weight:800;
+      font-size:1.4rem;
+      letter-spacing:.08em;
+    }
+
+    nav a {
+   margin-left: 15px;
+      text-decoration: none;
+      color: var(--pink);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      font-size: 0.7rem;
+    }
+
+    nav a:hover { text-decoration:underline; }
+
+    /* HERO COPY */
+    main {
+      flex:1;
+      display:flex;
+      align-items:center;
+    }
+
+    .herox {
+      padding:90px 40px 80px;
+      max-width:1200px;
+    }
+
+    .subtitle {
+        font-size: 0.8rem;
+      color: var(--pink);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    h1 {
+      font-size:clamp(3rem,6vw,4.5rem);
+      font-weight:600;
+      letter-spacing:.08em;
+      margin:0 0 24px 0;
+    }
+
+    .description {
+     font-size: 1.1rem;
+      max-width: 860px;
+      margin: 0 auto 36px;
+      opacity: 0.95;
+      line-height: 1.6;
+    }
+
+    .cta {
+      display:inline-block;
+      padding:14px 34px;
+      border:2px solid var(--pink);
+      color:var(--pink);
+      text-decoration:none;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      border-radius:6px;
+      margin-right:12px;
+      margin-bottom:12px;
+    }
+
+    .cta:hover {
+      background:var(--pink);
+      color:var(--black);
+    }
+
+    .tags {
+      margin-top:48px;
+      font-size:.7rem;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      opacity:.75;
+      max-width:900px;
+      line-height:1.9;
+    }
+
+    /* FOOTER */
+    footer {
+      padding:12px 40px;
+      font-size:.85rem;
+      opacity:.9;
+      border-top:1px solid rgba(255,255,255,.1);
+    }
+
+.footer{
+text-align:center;
+padding:20px;
+font-size:.75rem;
+opacity:.6;
+}
