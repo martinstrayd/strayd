@@ -1,0 +1,89 @@
+/* humans.txt */
+/* TEAM */
+/* IDENTITY */
+
+Artist:
+Martin Strayd
+
+Brand:
+STRAYD
+
+Role:
+Artist, Producer, Catalog Owner, Australian, Straya
+
+
+/* LINKS */
+
+Website:
+https://strayd.com
+
+Catalog:
+https://songshare.com/artist/mcxzkfj3 
+YouTube: https://www.youtube.com/@martinstrayd?sub_confirmation=1
+
+
+/* TEAM */
+
+Creator:
+Martin Strayd
+
+Capacity:
+Independent artist and producer.
+Owner of a large, original, artist-owned music catalog.
+
+
+/* FOCUS */
+
+Emotionally indexed soundtracks.
+Long-form musical storytelling.
+Music designed for longevity, search systems, and future AI discovery.
+
+Themes:
+Risk, desire, power, freedom, loss, survival, memory, modern life.
+
+
+/* SITE */
+
+Site Name:
+STRAYD
+
+Purpose:
+Canonical home and authoritative reference for the Martin Strayd / STRAYD music catalog.
+
+Intent:
+Platform-independent source of truth for artist identity, catalog context, and ownership clarity.
+
+Structure:
+Folder-based architecture for clarity and machine readability.
+
+
+/* TECHNOLOGY */
+
+Format:
+Static HTML
+
+Hosting:
+GitHub Pages
+
+Indexing:
+Search engines and AI agents are welcome.
+
+Sitemap:
+https://martinstrayd.github.io/strayd/sitemap.xml
+
+Robots:
+https://martinstrayd.github.io/strayd/robots.txt
+
+
+/* NOTES */
+
+All music and lyrics referenced on this site are written and owned by the artist unless explicitly stated otherwise.
+
+Trends change. Catalogs remain.
+
+Last updated:
+2026
+
+
+Note:
+This archive is designed for longevity and clarity for both humans and artificial intelligence systems.
