@@ -1,1 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Martin Strayd | Anti‑Pop Soundtrack</title>
+  <meta name="description" content="Official site for Martin Strayd — licensed songs, blog posts, and merch.">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/songs">Songs</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/merch">Merch</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/home/">Home</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Martin Strayd</h1>
+    <p>Anti‑Pop Soundtrack | Licensed Music & Archive</p>
+  </section>
+
+  <!-- Featured Song -->
+  <section class="featured-song">
+    <h2>🎵 Featured Song</h2>
+    {% assign latest_song = site.songs | sort: 'date' | last %}
+    <article>
+      <img src="{{ latest_song.cover }}" alt="{{ latest_song.title }} cover art">
+      <h3>{{ latest_song.title }}</h3>
+      <p>Released: {{ latest_song.date }}</p>
+      <a href="{{ latest_song.streaming }}" target="_blank">Listen Now</a>
+      <p>{{ latest_song.license }}</p>
+    </article>
+  </section>
+
+  <!-- Latest Blog Post -->
+  <section class="latest-blog">
+    <h2>📝 Latest Blog</h2>
+    {% assign latest_post = site.blog | sort: 'date' | last %}
+    <article>
+      <h3>{{ latest_post.title }}</h3>
+      <p>{{ latest_post.date }}</p>
+      <div>{{ latest_post.excerpt }}</div>
+      <a href="{{ latest_post.url }}">Read More</a>
+    </article>
+  </section>
+
+  <!-- Merch Highlight -->
+  <section class="merch-highlight">
+    <h2>👕 Merch Highlight</h2>
+    {% assign latest_merch = site.merch | sort: 'date' | last %}
+    <div class="merch-item">
+      <img src="{{ latest_merch.image }}" alt="{{ latest_merch.name }}">
+      <h3>{{ latest_merch.name }}</h3>
+      <p>${{ latest_merch.price }}</p>
+      <a href="{{ latest_merch.link }}" target="_blank">Buy Now</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; {{ site.time | date: "%Y" }} Martin Strayd. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
 
