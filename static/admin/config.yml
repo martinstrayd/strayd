@@ -1,1 +1,46 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "static/uploads"
+public_folder: "/uploads"
+
+site_url: "https://strayd.com"
+
+collections:
+  - name: "songs"
+    label: "Songs"
+    folder: "content/songs"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Release Date", name: "date", widget: "datetime" }
+      - { label: "Streaming Link", name: "streaming", widget: "string" }
+      - { label: "License Info", name: "license", widget: "text" }
+      - { label: "Cover Art", name: "cover", widget: "image" }
+      - { label: "Description", name: "body", widget: "markdown" }
+
+  - name: "blog"
+    label: "Blog"
+    folder: "content/blog"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "SEO Keywords", name: "keywords", widget: "list" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "merch"
+    label: "Merch"
+    folder: "content/merch"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Product Name", name: "name", widget: "string" }
+      - { label: "Price", name: "price", widget: "number" }
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Buy Link", name: "link", widget: "string" }
+      - { label: "Description", name: "body", widget: "markdown" }
 
