@@ -11,19 +11,17 @@ export default async function handler(req, res) {
       }
     );
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      throw new Error(`Spotify API error: ${response.status} ${errorText}`);
-    }
-
     const data = await response.json();
 
-    // Return raw JSON only — no assumptions
-    res.status(200).json(data);
+    // 👇 This is the guard + safe access block
+    if (data.error) {
+      return res.status(data.error.status).json({ error: data.error.message });
+    }
+
+    const total = data?.tracks?.items?.length || 0;
+    res.status(200).json({ total, tracks: data?.tracks?.items });
+
   } catch (error) {
-    res.status(500).json({
-      error: "Spotify API call failed",
-      details: error.message
-    });
+    res.status(500).json({ error: error.message });
   }
 }
