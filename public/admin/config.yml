@@ -2,8 +2,9 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "static/uploads"     # where uploaded images are stored
-public_folder: "/uploads"          # how images are referenced in site
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
 
 site_url: "https://strayd.com"
 
