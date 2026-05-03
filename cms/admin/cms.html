@@ -5,7 +5,24 @@
     <title>Content Manager</title>
   </head>
   <body>
-    <!-- Load Netlify CMS -->
+    <!-- Load Netlify CMS frontend -->
     <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+
+    <!-- Initialize CMS -->
+    <script>
+      CMS.init({
+        config: {
+          backend: {
+            name: "github",
+            repo: "martinstrayd/strayd",
+            branch: "main",
+            base_url: "https://www.strayd.com",
+            auth_endpoint: "/api/auth"
+          },
+          media_folder: "cms/uploads",
+          public_folder: "/cms/uploads"
+        }
+      });
+    </script>
   </body>
 </html>
