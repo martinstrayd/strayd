@@ -3,7 +3,7 @@ import fetch from "node-fetch";
 export default async function handler(req, res) {
   try {
     const response = await fetch(
-      "https://api.spotify.com/v1/albums/4ZfgXJa22P6r6toOQURyvs", // example album
+      "https://api.spotify.com/v1/albums/4ZfgXJa22P6r6toOQURyvs", // Devils Goin Public
       {
         headers: {
           Authorization: `Bearer ${process.env.SPOTIFY_TOKEN}`
@@ -18,10 +18,10 @@ export default async function handler(req, res) {
 
     const data = await response.json();
 
-    // Return the raw JSON so you can see the structure
+    // Instead of assuming "total" exists, just return the raw JSON
     res.status(200).json(data);
 
-    // Once you confirm the shape, you can safely access:
+    // Later, once you confirm the shape, you can safely access:
     // const total = data?.tracks?.items?.length || 0;
     // res.status(200).json({ total, tracks: data?.tracks?.items });
   } catch (error) {
