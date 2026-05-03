@@ -2,8 +2,8 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "static/uploads"
-public_folder: "/uploads"
+media_folder: "static/uploads"     # where uploaded images are stored
+public_folder: "/uploads"          # how images are referenced in site
 
 site_url: "https://strayd.com"
 
@@ -13,6 +13,8 @@ collections:
     folder: "content/songs"
     create: true
     slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Release Date", name: "date", widget: "datetime" }
@@ -26,6 +28,8 @@ collections:
     folder: "content/blog"
     create: true
     slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Publish Date", name: "date", widget: "datetime" }
@@ -37,10 +41,11 @@ collections:
     folder: "content/merch"
     create: true
     slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
     fields:
       - { label: "Product Name", name: "name", widget: "string" }
       - { label: "Price", name: "price", widget: "number" }
       - { label: "Image", name: "image", widget: "image" }
       - { label: "Buy Link", name: "link", widget: "string" }
       - { label: "Description", name: "body", widget: "markdown" }
-
