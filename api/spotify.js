@@ -18,10 +18,10 @@ export default async function handler(req, res) {
 
     const data = await response.json();
 
-    // Dump the raw JSON so you can see the structure
+    // Return the raw JSON so you can see the structure
     res.status(200).json(data);
 
-    // Later, once you know the shape, you can safely access:
+    // Once you confirm the shape, you can safely access:
     // const total = data?.tracks?.items?.length || 0;
     // res.status(200).json({ total, tracks: data?.tracks?.items });
   } catch (error) {
