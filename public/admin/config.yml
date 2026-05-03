@@ -1,12 +1,10 @@
 backend:
   name: github
-  repo: martinstrayd/strayd
+  repo: martinstrayd/strayd   # replace with your GitHub repo owner/name
   branch: main
 
-
-media_folder: "public/uploads"
-public_folder: "/uploads"
-
+media_folder: "public/uploads"   # where uploaded images are stored in the repo
+public_folder: "/uploads"        # how images are referenced on the site
 
 site_url: "https://strayd.com"
 
