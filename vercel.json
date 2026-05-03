@@ -4,11 +4,6 @@
       "source": "/(.*)",
       "destination": "https://strayd.com/$1",
       "permanent": true
-    },
-    {
-      "source": "/www/(.*)",
-      "destination": "https://strayd.com/$1",
-      "permanent": true
     }
   ]
 }
