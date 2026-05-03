@@ -1,8 +1,11 @@
 {
   "redirects": [
     {
-      "source": "/",
-      "destination": "https://strayd.com",
+      "source": "/(.*)",
+      "has": [
+        { "type": "host", "value": "www.strayd.com" }
+      ],
+      "destination": "https://strayd.com/$1",
       "permanent": true
     }
   ]
