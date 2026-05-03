@@ -7,7 +7,6 @@ backend:
 media_folder: "cms/uploads"
 public_folder: "/cms/uploads"
 
-
 site_url: "https://strayd.com"
 
 collections:
