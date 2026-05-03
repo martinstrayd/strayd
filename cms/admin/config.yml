@@ -4,6 +4,7 @@ backend:
   branch: main
   base_url: https://www.strayd.com
   auth_endpoint: /api/auth
+
 media_folder: "cms/uploads"
 public_folder: "/cms/uploads"
 
