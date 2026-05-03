@@ -52,3 +52,4 @@ collections:
       - { label: "Image", name: "image", widget: "image" }
       - { label: "Buy Link", name: "link", widget: "string" }
       - { label: "Description", name: "body", widget: "markdown" }
+
