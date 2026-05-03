@@ -6,16 +6,10 @@
   </head>
   <body>
     <!-- Load Netlify CMS frontend -->
-    <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+   <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+<script>
+  CMS.init({ config: { load_config_file: true, config_file: "config.yml" } });
+</script>
 
-    <!-- Initialize CMS with external config.yml -->
-    <script>
-      CMS.init({
-        config: {
-          load_config_file: true,
-          config_file: "config.yml"
-        }
-      });
-    </script>
   </body>
 </html>
