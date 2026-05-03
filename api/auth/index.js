@@ -20,8 +20,8 @@ export default async function handler(req, res) {
     const data = await response.json();
 
     // Redirect back to CMS admin with token in URL fragment
-    const redirectUrl = `https://www.strayd.com/cms/admin/cms.html#access_token=${data.access_token}&token_type=${data.token_type}&scope=${data.scope}`;
-    return res.redirect(redirectUrl);
+const redirectUrl = `https://www.strayd.com/cms/admin/cms.html#access_token=${data.access_token}&token_type=${data.token_type}&scope=${data.scope}`;
+return res.redirect(redirectUrl);
   }
 
   // Initial step: send user to GitHub OAuth
