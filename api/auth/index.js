@@ -28,3 +28,4 @@ export default async function handler(req, res) {
   const redirect = `https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}&scope=repo,user&redirect_uri=https://www.strayd.com/api/auth`;
   res.redirect(redirect);
 }
+ 
