@@ -3,7 +3,6 @@ backend:
   repo: martinstrayd/strayd
   branch: main
   base_url: https://www.strayd.com
-  auth_endpoint: /api/auth
 
 media_folder: "cms/uploads"
 public_folder: "/cms/uploads"
@@ -52,4 +51,3 @@ collections:
       - { label: "Image", name: "image", widget: "image" }
       - { label: "Buy Link", name: "link", widget: "string" }
       - { label: "Description", name: "body", widget: "markdown" }
-
