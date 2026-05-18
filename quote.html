@@ -1,0 +1,467 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MARTIN STRAYD — Quote Me On That</title>
+
+<meta name="description" content="Dark cinematic philosophy, luxury rebellion, ambition, money, desire and anti-pop culture quotes by MARTIN STRAYD.">
+
+<meta name="keywords" content="Martin Strayd quotes, Quote Me On That, dark quotes, cinematic philosophy, luxury rebellion">
+
+<meta name="author" content="MARTIN STRAYD">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#000000">
+
+<!-- OPEN GRAPH -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="MARTIN STRAYD — Quote Me On That">
+<meta property="og:description" content="Dark cinematic philosophy and luxury rebellion quotes by MARTIN STRAYD.">
+<meta property="og:image" content="social.jpg">
+<meta property="og:url" content="https://strayd.com">
+
+<!-- TWITTER -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MARTIN STRAYD — Quote Me On That">
+<meta name="twitter:description" content="Dark cinematic philosophy and luxury rebellion quotes.">
+<meta name="twitter:image" content="social.jpg">
+
+<!-- FONTS -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<!-- SCREENSHOT LIBRARY -->
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+<style>
+
+:root{
+    --bg:#000;
+    --text:#f5f5f5;
+}
+
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#000;
+    font-family:'Inter',sans-serif;
+}
+
+/* BODY */
+body{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--text);
+}
+
+/* =========================================================
+BACKGROUND IMAGE
+PUT bg.png IN SAME FOLDER AS THIS HTML FILE
+========================================================= */
+
+.bg{
+    position:fixed;
+    inset:0;
+
+    background:
+        linear-gradient(
+            rgba(0,0,0,.28),
+            rgba(0,0,0,.48)
+        ),
+        url('bg.png') center center / cover no-repeat;
+
+    transform:scale(1.02);
+
+    filter:
+        brightness(.96)
+        contrast(1.12)
+        saturate(1);
+}
+
+/* FILM GRAIN */
+.bg::after{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    opacity:.10;
+
+    background-image:
+        radial-gradient(rgba(255,255,255,.12) 1px, transparent 1px);
+
+    background-size:3px 3px;
+
+    mix-blend-mode:soft-light;
+}
+
+/* VIGNETTE */
+.vignette{
+    position:fixed;
+    inset:0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(0,0,0,0) 50%,
+            rgba(0,0,0,.42) 100%
+        );
+
+    pointer-events:none;
+}
+
+/* MAIN */
+.container{
+    position:relative;
+    z-index:2;
+
+    width:min(92vw,1400px);
+
+    padding:50px;
+
+    text-align:center;
+}
+
+/* QUOTE */
+.quote{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:300;
+
+    line-height:1.08;
+    letter-spacing:.015em;
+
+    text-wrap:balance;
+
+    text-shadow:
+        0 0 18px rgba(0,0,0,.55),
+        0 0 40px rgba(0,0,0,.35);
+
+    transition:
+        opacity .7s ease,
+        transform .7s ease;
+
+    user-select:none;
+}
+
+/* AUTHOR */
+.author{
+    margin-top:42px;
+
+    font-size:13px;
+    letter-spacing:.42em;
+
+    opacity:.92;
+
+    user-select:none;
+}
+
+.author a{
+    color:#fff;
+    text-decoration:none;
+    transition:.3s ease;
+}
+
+.author a:hover{
+    opacity:.65;
+    letter-spacing:.55em;
+}
+
+/* MOBILE */
+@media(max-width:700px){
+
+    .container{
+        padding:24px;
+    }
+
+    .author{
+        font-size:11px;
+        margin-top:28px;
+        letter-spacing:.28em;
+    }
+}
+
+</style>
+</head>
+<body>
+
+<div class="bg"></div>
+<div class="vignette"></div>
+
+<main class="container">
+
+    <h1 class="quote" id="quote">
+        Loading...
+    </h1>
+
+    <div class="author">
+        —
+        <a href="https://strayd.com" target="_blank">
+            STRAYD
+        </a>
+    </div>
+
+</main>
+
+<script>
+
+/* =========================================================
+READ QUOTES ONLY FROM quote.txt
+ONE QUOTE PER LINE
+========================================================= */
+
+let quotes = [];
+
+let currentIndex = 0;
+
+let historyStack = [];
+
+/* =========================================================
+LOAD QUOTES
+========================================================= */
+
+async function loadQuotes(){
+
+    try{
+
+        const response = await fetch(
+            "quote.txt?v=" + Date.now()
+        );
+
+        const text = await response.text();
+
+        quotes = text
+            .split("\n")
+            .map(q => q.trim())
+            .filter(q => q.length > 0);
+
+        if(!quotes.length){
+
+            throw new Error("No quotes found.");
+        }
+
+        currentIndex = randomIndex();
+
+        showQuote(currentIndex);
+
+    }
+    catch(err){
+
+        document.getElementById("quote").innerHTML =
+            "Missing quote.txt";
+
+        console.error(err);
+    }
+}
+
+/* =========================================================
+RANDOM INDEX
+========================================================= */
+
+function randomIndex(){
+
+    let index;
+
+    do{
+
+        index = Math.floor(Math.random() * quotes.length);
+
+    }while(index === currentIndex && quotes.length > 1);
+
+    return index;
+}
+
+/* =========================================================
+SMART FONT SIZE
+========================================================= */
+
+function adjustFontSize(text){
+
+    const quoteEl = document.getElementById("quote");
+
+    const len = text.length;
+
+    let size;
+
+    if(len < 40){
+
+        size = "clamp(58px, 7vw, 120px)";
+    }
+    else if(len < 80){
+
+        size = "clamp(44px, 5vw, 90px)";
+    }
+    else if(len < 140){
+
+        size = "clamp(34px, 4vw, 66px)";
+    }
+    else if(len < 220){
+
+        size = "clamp(28px, 3vw, 54px)";
+    }
+    else{
+
+        size = "clamp(22px, 2vw, 42px)";
+    }
+
+    quoteEl.style.fontSize = size;
+}
+
+/* =========================================================
+DISPLAY
+========================================================= */
+
+function showQuote(index){
+
+    currentIndex = index;
+
+    const quoteEl = document.getElementById("quote");
+
+    quoteEl.style.opacity = 0;
+    quoteEl.style.transform = "translateY(18px)";
+
+    setTimeout(() => {
+
+        const quote = quotes[index];
+
+        quoteEl.textContent = quote;
+
+        adjustFontSize(quote);
+
+        quoteEl.style.opacity = 1;
+        quoteEl.style.transform = "translateY(0px)";
+
+    }, 350);
+}
+
+/* =========================================================
+NEXT
+========================================================= */
+
+function nextQuote(){
+
+    if(!quotes.length) return;
+
+    historyStack.push(currentIndex);
+
+    const next = randomIndex();
+
+    showQuote(next);
+}
+
+/* =========================================================
+PREVIOUS
+========================================================= */
+
+function previousQuote(){
+
+    if(historyStack.length > 0){
+
+        const prev = historyStack.pop();
+
+        showQuote(prev);
+    }
+}
+
+/* =========================================================
+SAVE SCREENSHOT
+P KEY
+========================================================= */
+
+async function saveScreenshot(){
+
+    const canvas = await html2canvas(document.body, {
+
+        useCORS:true,
+        scale:2
+
+    });
+
+    canvas.toBlob(blob => {
+
+        const filename = prompt(
+            "Save screenshot as:",
+            "strayd_quote.png"
+        );
+
+        if(!filename) return;
+
+        const link = document.createElement("a");
+
+        link.download = filename.endsWith(".png")
+            ? filename
+            : filename + ".png";
+
+        link.href = URL.createObjectURL(blob);
+
+        link.click();
+
+    });
+}
+
+/* =========================================================
+KEYBOARD CONTROLS
+========================================================= */
+
+document.addEventListener("keydown", (e) => {
+
+    /* NEXT */
+    if(
+        e.key === "ArrowRight" ||
+        e.key === ">"
+    ){
+        nextQuote();
+    }
+
+    /* PREVIOUS */
+    if(
+        e.key === "ArrowLeft" ||
+        e.key === "<"
+    ){
+        previousQuote();
+    }
+
+    /* SAVE PNG */
+    if(
+        e.key.toLowerCase() === "p"
+    ){
+        saveScreenshot();
+    }
+
+});
+
+/* =========================================================
+AUTO CHANGE EVERY 60 SECONDS
+========================================================= */
+
+setInterval(() => {
+
+    nextQuote();
+
+}, 60000);
+
+/* =========================================================
+START
+========================================================= */
+
+loadQuotes();
+
+</script>
+
+</body>
+</html>
+```
