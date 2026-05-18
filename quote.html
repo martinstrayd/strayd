@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,6 +67,9 @@ body{
     align-items:center;
     justify-content:center;
     color:var(--text);
+
+    backface-visibility:hidden;
+    transform:translateZ(0);
 }
 
 /* =========================================================
@@ -155,6 +159,10 @@ PUT bg.png IN SAME FOLDER AS THIS HTML FILE
         transform .7s ease;
 
     user-select:none;
+
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    text-rendering:geometricPrecision;
 }
 
 /* AUTHOR */
@@ -230,6 +238,15 @@ let currentIndex = 0;
 let historyStack = [];
 
 /* =========================================================
+NON-REPEATING RANDOM SYSTEM
+WILL NOT REPEAT UNTIL ENTIRE LIST IS USED
+========================================================= */
+
+let shuffledIndexes = [];
+
+let shuffledPointer = 0;
+
+/* =========================================================
 LOAD QUOTES
 ========================================================= */
 
@@ -253,6 +270,8 @@ async function loadQuotes(){
             throw new Error("No quotes found.");
         }
 
+        buildShuffleCycle();
+
         currentIndex = randomIndex();
 
         showQuote(currentIndex);
@@ -268,18 +287,65 @@ async function loadQuotes(){
 }
 
 /* =========================================================
-RANDOM INDEX
+SHUFFLE ARRAY
+========================================================= */
+
+function shuffle(array){
+
+    for(let i = array.length - 1; i > 0; i--){
+
+        const j = Math.floor(Math.random() * (i + 1));
+
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+
+    return array;
+}
+
+/* =========================================================
+BUILD NEW RANDOMIZED CYCLE
+========================================================= */
+
+function buildShuffleCycle(){
+
+    shuffledIndexes = [];
+
+    for(let i = 0; i < quotes.length; i++){
+
+        shuffledIndexes.push(i);
+    }
+
+    shuffle(shuffledIndexes);
+
+    /* PREVENT FIRST ITEM MATCHING CURRENT */
+    if(
+        shuffledIndexes.length > 1 &&
+        shuffledIndexes[0] === currentIndex
+    ){
+
+        [shuffledIndexes[0], shuffledIndexes[1]] =
+        [shuffledIndexes[1], shuffledIndexes[0]];
+    }
+
+    shuffledPointer = 0;
+}
+
+/* =========================================================
+GET NEXT UNIQUE INDEX
 ========================================================= */
 
 function randomIndex(){
 
-    let index;
+    if(
+        shuffledIndexes.length === 0 ||
+        shuffledPointer >= shuffledIndexes.length
+    ){
+        buildShuffleCycle();
+    }
 
-    do{
+    const index = shuffledIndexes[shuffledPointer];
 
-        index = Math.floor(Math.random() * quotes.length);
-
-    }while(index === currentIndex && quotes.length > 1);
+    shuffledPointer++;
 
     return index;
 }
@@ -386,7 +452,16 @@ async function saveScreenshot(){
     const canvas = await html2canvas(document.body, {
 
         useCORS:true,
-        scale:2
+
+        backgroundColor:"#000000",
+
+        scale:window.devicePixelRatio * 4,
+
+        allowTaint:true,
+
+        logging:false,
+
+        imageTimeout:0
 
     });
 
@@ -463,3 +538,4 @@ loadQuotes();
 
 </body>
 </html>
+```
