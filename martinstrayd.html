@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Martin Strayd Music & Creative Agency</title>
+    <meta name="description" content="Interactive full-screen Martin Strayd landing page for creative agency STRAYD featuring mouse-scrubbed video and typewriter typography." />
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://db.onlinewebfonts.com/c/5ac3fe7c6abd2f62067f266d89671492?family=HelveticaNowDisplay-Medium" type="text/css" />
+    <link rel="stylesheet" href="https://db.onlinewebfonts.com/c/1aa3377e489837a26d019bba501e779d?family=HelveticaNowDisplayW01-Rg" type="text/css" />
+    <!-- Tailwind CDN for zero-setup standalone preview -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              heading: ["'HelveticaNowDisplay-Medium'", "'Helvetica Neue'", "Arial", "sans-serif"],
+              body: ["'HelveticaNowDisplayW01-Rg'", "'Helvetica Neue'", "Arial", "sans-serif"]
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      :root {
+        --font-heading: 'HelveticaNowDisplay-Medium', 'Helvetica Neue', Arial, sans-serif;
+        --font-body: 'HelveticaNowDisplayW01-Rg', 'Helvetica Neue', Arial, sans-serif;
+      }
+      body {
+        font-family: var(--font-body);
+        background-color: #000;
+        color: #fff;
+        margin: 0;
+        overflow: hidden;
+      }
+      .font-heading {
+        font-family: var(--font-heading);
+      }
+      .font-body {
+        font-family: var(--font-body);
+      }
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+      }
+      .animate-blink {
+        animation: blink 1s step-end infinite;
+      }
+
+.typewriter-text {
+    white-space: pre-line;
+    max-width: 450px; /* adjust width here */
+  }
+    </style>
+    <!-- React & Babel Standalone (runs directly from file://) -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body class="bg-black text-white selection:bg-white selection:text-black">
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const { useState, useEffect, useRef, useCallback } = React;
+
+      function useTypewriter(text, speed = 6, startDelay = 1900) {
+        const [displayed, setDisplayed] = useState('');
+        const [done, setDone] = useState(false);
+
+        useEffect(() => {
+          let index = 0;
+          let timer = null;
+          let delayTimer = setTimeout(() => {
+            timer = setInterval(() => {
+              index += 1;
+              setDisplayed(text.slice(0, index));
+              if (index >= text.length) {
+                setDone(true);
+                clearInterval(timer);
+              }
+            }, speed);
+          }, startDelay);
+
+          return () => {
+            clearTimeout(delayTimer);
+            if (timer) clearInterval(timer);
+          };
+        }, [text, speed, startDelay]);
+
+        return { displayed, done };
+      }
+
+      const DEFAULT_VIDEO_URL =
+        'hero-video.mp4';
+
+      function App() {
+        const videoRef = useRef(null);
+        const targetTimeRef = useRef(0);
+        const isSeekingRef = useRef(false);
+        const prevXRef = useRef(null);
+        const fileInputRef = useRef(null);
+
+        const [menuOpen, setMenuOpen] = useState(false);
+        const [pillsVisible, setPillsVisible] = useState(false);
+        const [toastMessage, setToastMessage] = useState(null);
+        const [activeModal, setActiveModal] = useState(null);
+        const [pitchFormSubmitted, setPitchFormSubmitted] = useState(false);
+        const [videoSrc, setVideoSrc] = useState(DEFAULT_VIDEO_URL);
+        const [showVideoModal, setShowVideoModal] = useState(false);
+        const [videoUrlInput, setVideoUrlInput] = useState('');
+        const [isDragging, setIsDragging] = useState(false);
+
+        const typewriterText =
+          'Before launching his solo career, Martin Strayd worked extensively behind the music industry scenes as a celebrity Hollywood guitar technician for rock icons such as Steve Jones of the Sex Pistols and Doug Fieger of The Knack. \n\nHe now channels 55 years of experiences into hit singles and soundtracks for international radio stations,  centered around lifestyle themes, and the endless search for love.';
+        const { displayed, done } = useTypewriter(typewriterText, 9, 40);
+
+        useEffect(() => {
+          const timer = setTimeout(() => setPillsVisible(true), 800);
+          return () => clearTimeout(timer);
+        }, []);
+
+        const handleSeeked = useCallback(() => {
+          const video = videoRef.current;
+          if (!video) return;
+          const target = targetTimeRef.current;
+          if (Math.abs(video.currentTime - target) > 0.03) {
+            video.currentTime = target;
+          } else {
+            isSeekingRef.current = false;
+          }
+        }, []);
+
+        useEffect(() => {
+          const handleMouseMove = (e) => {
+            const video = videoRef.current;
+            if (!video || !video.duration || Number.isNaN(video.duration)) {
+              prevXRef.current = e.clientX;
+              return;
+            }
+            if (prevXRef.current === null) {
+              prevXRef.current = e.clientX;
+              return;
+            }
+            const currentX = e.clientX;
+            const delta = currentX - prevXRef.current;
+            prevXRef.current = currentX;
+
+            const SENSITIVITY = 0.8;
+            const timeOffset = (delta / window.innerWidth) * SENSITIVITY * video.duration;
+            let newTarget = targetTimeRef.current + timeOffset;
+            if (newTarget < 0) newTarget = 0;
+            if (newTarget > video.duration) newTarget = video.duration;
+            targetTimeRef.current = newTarget;
+
+            if (!isSeekingRef.current) {
+              isSeekingRef.current = true;
+              video.currentTime = newTarget;
+            }
+          };
+
+          const handleMouseLeave = () => { prevXRef.current = null; };
+
+          window.addEventListener('mousemove', handleMouseMove, { passive: true });
+          window.addEventListener('mouseleave', handleMouseLeave);
+          return () => {
+            window.removeEventListener('mousemove', handleMouseMove);
+            window.removeEventListener('mouseleave', handleMouseLeave);
+          };
+        }, []);
+
+        // Drag & drop support for any video file
+        useEffect(() => {
+          const handleDragOver = (e) => {
+            e.preventDefault();
+            if (e.dataTransfer?.types?.includes('Files')) setIsDragging(true);
+          };
+          const handleDragLeave = (e) => {
+            if (e.clientX <= 0 || e.clientY <= 0 || e.clientX >= window.innerWidth || e.clientY >= window.innerHeight) {
+              setIsDragging(false);
+            }
+          };
+          const handleDrop = (e) => {
+            e.preventDefault();
+            setIsDragging(false);
+            const file = e.dataTransfer?.files?.[0];
+            if (file && file.type.startsWith('video/')) {
+              setVideoSrc(URL.createObjectURL(file));
+              setToastMessage('Background video updated from file');
+              setTimeout(() => setToastMessage(null), 2500);
+            }
+          };
+          window.addEventListener('dragover', handleDragOver);
+          window.addEventListener('dragleave', handleDragLeave);
+          window.addEventListener('drop', handleDrop);
+          return () => {
+            window.removeEventListener('dragover', handleDragOver);
+            window.removeEventListener('dragleave', handleDragLeave);
+            window.removeEventListener('drop', handleDrop);
+          };
+        }, []);
+
+        const handleLoadedMetadata = () => {
+          if (videoRef.current) {
+            targetTimeRef.current = videoRef.current.currentTime || 0;
+            videoRef.current.currentTime = 0.01;
+          }
+        };
+
+        const handleCopyEmail = (e) => {
+          e.preventDefault();
+          const emailToCopy = 'martinstrayd@gmail.com';
+          if (navigator.clipboard) {
+            navigator.clipboard.writeText(emailToCopy);
+          }
+          setToastMessage('Copied martinstrayd@gmail.com to clipboard');
+          setTimeout(() => setToastMessage(null), 2400);
+        };
+
+        const handleFileInputChange = (e) => {
+          const file = e.target.files?.[0];
+          if (file && file.type.startsWith('video/')) {
+            setVideoSrc(URL.createObjectURL(file));
+            setShowVideoModal(false);
+            setToastMessage('Background video updated from file');
+            setTimeout(() => setToastMessage(null), 2500);
+          }
+        };
+
+        const handleApplyUrl = (e) => {
+          e.preventDefault();
+          if (videoUrlInput.trim()) {
+            setVideoSrc(videoUrlInput.trim());
+            setShowVideoModal(false);
+            setToastMessage('Background video URL applied');
+            setTimeout(() => setToastMessage(null), 2500);
+          }
+        };
+
+        return (
+          <div className="relative min-h-screen w-full max-w-[450px] bg-black text-white select-none overflow-hidden font-body">
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="video/mp4,video/webm,video/quicktime,video/*"
+              onChange={handleFileInputChange}
+              className="hidden"
+            />
+
+            {isDragging && (
+              <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex flex-col items-center justify-center border-2 border-dashed border-white/60 m-4 rounded-3xl pointer-events-none">
+                <div className="text-3xl mb-2">✳︎</div>
+                <p className="text-xl font-heading text-white mb-1">Drop your video file here</p>
+                <p className="text-xs text-neutral-400">Something cool happens</p>
+              </div>
+            )}
+
+            <video
+              ref={videoRef}
+              key={videoSrc}
+              src={videoSrc}
+              muted
+              playsInline
+              preload="auto"
+              onSeeked={handleSeeked}
+              onLoadedMetadata={handleLoadedMetadata}
+              className="fixed inset-0 z-0 w-full h-full pointer-events-none"
+              style={{ objectFit: 'cover', objectPosition: '70% center' }}
+            />
+
+            <div className="fixed inset-0 z-0 bg-gradient-to-r from-black/55 via-black/30 to-black/40 pointer-events-none" />
+
+            {/* Navbar */}
+            <header className="fixed top-0 left-0 right-0 z-10 w-full px-5 sm:px-8 py-4 sm:py-5 flex row justify-between items-center">
+              <div className="flex flex-row items-center gap-3">
+                <span className="font-heading text-[21px] sm:text-[26px] tracking-tight text-white leading-none">
+                   {/* 1464 STORIES */}
+                </span>
+                <span className="text-[25px] sm:text-[30px] text-white select-none leading-none" style={{ letterSpacing: '-0.02em' }}>
+               {/* ✳︎ */}
+                </span>
+              </div>
+
+ 
+              <div className="hidden md:block">
+                <button type="button" onClick={() => setActiveModal('touch')} className="text-[23px] text-white underline underline-offset-2 hover:opacity-60 transition-opacity cursor-pointer bg-transparent border-none p-0">
+                 {/* CONTACT */}
+                </button>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setMenuOpen(!menuOpen)}
+                className="md:hidden flex flex-col justify-center items-center w-8 h-8 gap-[5px] bg-transparent border-none cursor-pointer"
+              >
+                <span className={`w-6 h-[2px] bg-white transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-[7px]' : ''}`} />
+                <span className={`w-6 h-[2px] bg-white transition-all duration-300 ${menuOpen ? 'opacity-0' : 'opacity-100'}`} />
+                <span className={`w-6 h-[2px] bg-white transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-[7px]' : ''}`} />
+              </button>
+            </header>
+
+            {/* Mobile menu */}
+            <div className={`fixed inset-0 z-[9] bg-black/90 backdrop-blur-md flex flex-col justify-center px-8 gap-8 md:hidden transition-opacity duration-300 ${menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+
+              <button type="button" onClick={() => { setActiveModal(''); setMenuOpen(false); }} className="text-left text-[32px] font-medium text-white underline underline-offset-4 bg-transparent border-none p-0 pt-4">Get in touch</button>
+            </div>
+
+            {/* Hero */}
+            <main className="relative z-[1] w-full h-screen flex flex-col justify-end pb-12 md:justify-center md:pb-0 px-5 sm:px-8 md:px-10 overflow-hidden">
+              <div className="max-w-xl relative z-10 w-full">
+                <div
+                  className="pointer-events-none select-none mb-5 sm:mb-6"
+                  style={{ fontSize: 'clamp(18px, 4vw, 30px)', lineHeight: 1.3, fontWeight: 600, color: '#fff', filter: 'blur(2px)' }}
+                >
+                  MARTIN STRAYD OFFICIAL<br />World Famous Assistant 
+                </div>
+                <p className="typewriter-text text-white mb-5 sm:mb-6"
+ style={{ fontSize: 'clamp(18px, 3vw, 20px)', lineHeight: 1.35, fontWeight: 200, minHeight: '54px' }}>
+                  {displayed}
+                  {!done && <span className="inline-block w-[2px] h-[1.1em] bg-white align-middle ml-[2px] animate-blink" />}
+                </p>
+
+                <div
+                  className="flex flex-wrap gap-y-1 select-none"
+                  style={{
+                    opacity: pillsVisible ? 1 : 0,
+                    transform: pillsVisible ? 'translateY(0)' : 'translateY(8px)',
+                    transition: 'opacity 0.9s ease, transform 0.4s ease',
+                  }}
+                >
+         <a href="https://music.youtube.com/@martinstrayd"
+   class="inline-flex items-center justify-center bg-white text-black border border-black/10 rounded-full text-[13px] sm:text-[15px] px-4 sm:px-5 py-[0.3em] mx-[0.2em] mb-[0.4em] whitespace-nowrap hover:bg-black hover:text-white transition-colors duration-1200 cursor-pointer shadow-sm">
+    Listen ▶︎
+</a>
+
+<a href="https://www.youtube.com/@martinstrayd"
+   class="inline-flex items-center justify-center bg-white text-black border border-black/10 rounded-full text-[13px] sm:text-[15px] px-4 sm:px-5 py-[0.3em] mx-[0.2em] mb-[0.4em] whitespace-nowrap hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer shadow-sm">
+    Watch 🎬
+</a>
+
+<a href="https://open.spotify.com/artist/6aRM8IKV2HBUZRGnnDdrM0"
+   class="inline-flex items-center justify-center bg-white text-black border border-black/10 rounded-full text-[13px] sm:text-[15px] px-4 sm:px-5 py-[0.3em] mx-[0.2em] mb-[0.4em] whitespace-nowrap hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer shadow-sm">
+    Stream 📀
+</a>
+
+<a href="https://www.google.co.th/search?q=martin+strayd&sca_esv=bb2f44a607184c8a&sxsrf=APpeQnsFIbbKKpXuSbO7bv3zkVobn1-okQ%3A1792390290418&udm=50&source=hp&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8c4u0nXx4bEIpwm1lnNH832VstEKsVDqPorK0Gahnm2no1YAFtlsByIZaJlK7yr6gIQnNXX16KI5TUYfGThGd0KzSsJidLcQnIWbc_jksvEk8iF0GOGGeLV8VG4dXxoH3VEqtTB4ah-R3Kxn3SIv68ZRVOjuAHY_V4g_ciC7gNP9mpfq-pC0Pg7Ow1PBOfQwATDYdb9w&vsint=&aep=1&ntc=1&cs=0&sa=X&ved=2ahUKEwico7yUtsWXAxUPSmwGHY1vMkEQ2J8OegQIEhAD&biw=1432&bih=768&dpr=2&mstk=AUtExfCSyqaCVuIxVz2yyaInJxQclrRFb5wcXXK37kmcD3hmMywWwpamHi1WBmhhyG4KbFq-3wN6F3aGutWc2KUVZ12vTP5v2oBzFPIkkESqtmM_8T7qLIamo4n5yH7pMCRa0ZmkpMlsTfzS4tbPZGZl25-rdst4b9qTv0BEovgxhXkc6NtRtnjiv4vKVvY9FxvoyNR4aTQvS-7GR5FhsTMKBTZtVeK2Gf1pjjCHKF0SdyOUZ8VDobScxlK4Nw&csuir=1"
+   class="inline-flex items-center justify-center bg-white text-black border border-black/10 rounded-full text-[13px] sm:text-[15px] px-4 sm:px-5 py-[0.3em] mx-[0.2em] mb-[0.4em] whitespace-nowrap hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer shadow-sm">
+    About 🗎
+</a>
+
+ 
+
+                  <button type="button" onClick={handleCopyEmail} className="group inline-flex items-center justify-center text-white bg-transparent border border-white rounded-full text-[13px] sm:text-[15px] px-4 sm:px-5 py-[0.3em] mx-[0.2em] mb-[0.4em] whitespace-nowrap gap-2 sm:gap-3 hover:bg-white hover:text-black transition-colors duration-200 cursor-pointer">
+                    <span>  <span className="underline underline-offset-1">martinstrayd@gmail.com</span></span>
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect x="3.5" y="1.5" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="1.1" fill="none" />
+                      <rect x="1.5" y="3.5" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="1.1" fill="none" />
+                    </svg>
+                  </button>                 </div>
+              </div>
+            </main>
+
+            {toastMessage && (
+              <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-white text-black px-4 py-2 rounded-full text-xs sm:text-sm font-medium tracking-tight shadow-xl flex items-center gap-2 border border-black/10">
+                <span>✳︎</span>
+                <span>{toastMessage}</span>
+              </div>
+            )}
+
+            <button
+              type="button"
+              onClick={() => setShowVideoModal(false)}
+              className="fixed bottom-4 right-5 z-20 text-[11px] text-white/50 hover:text-white transition-colors bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 hover:border-white/30 flex items-center gap-1.5 cursor-pointer select-none"
+            >
+             {/*   <span>✳︎</span> */}  
+            {/*  <span>Shi* Happens</span>  */}  
+            </button>
+
+            {showVideoModal && (
+              <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4" onClick={() => setShowVideoModal(false)}>
+                <div className="bg-neutral-950 border border-neutral-800 text-white rounded-2xl w-full max-w-md p-6 relative shadow-2xl" onClick={e => e.stopPropagation()}>
+                  <button type="button" onClick={() => setShowVideoModal(false)} className="absolute top-5 right-5 text-neutral-400 hover:text-white text-xl p-1 bg-transparent border-none cursor-pointer">✕</button>
+                  <h2 className="text-xl font-heading mb-2">You Can Replace Background Video</h2>
+                  <div className="space-y-4 mt-4">
+                    <div className="bg-neutral-900 border border-neutral-800 rounded-xl p-4 text-center">
+                      <p className="text-xs text-neutral-300 font-medium mb-2">Upload Video File</p>
+                      <button type="button" onClick={() => fileInputRef.current?.click()} className="bg-white text-black font-medium text-xs px-4 py-2 rounded-full hover:bg-neutral-200 transition-colors cursor-pointer">
+                        Choose Video File
+                      </button>
+                    </div>
+                    <form onSubmit={handleApplyUrl} className="space-y-2">
+                      <label className="block text-xs text-neutral-400">Or paste Video URL:</label>
+                      <div className="flex gap-2">
+                        <input type="url" value={videoUrlInput} onChange={e => setVideoUrlInput(e.target.value)} placeholder="https://.../video.mp4" className="flex-1 bg-neutral-900 border border-neutral-800 rounded-lg px-3 py-1.5 text-xs text-white" />
+                        <button type="submit" className="bg-white text-black font-medium text-xs px-3 py-1.5 rounded-lg">Bingo</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {activeModal && (
+              <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4" onClick={() => setActiveModal(null)}>
+                <div className="bg-neutral-950 border border-neutral-800 text-white rounded-2xl w-full max-w-lg p-6 relative shadow-2xl" onClick={e => e.stopPropagation()}>
+                  <button type="button" onClick={() => setActiveModal(null)} className="absolute top-5 right-5 text-neutral-400 hover:text-white text-xl p-1 bg-transparent border-none cursor-pointer">✕</button>
+                  <h2 className="text-2xl font-heading mb-3">YOU HAVE 24 HOURS TO WIN</h2>
+                  <p className="text-sm text-neutral-300 mb-6">Send 4K photo of you licking your elbow.</p>
+                  <button type="button" onClick={() => setActiveModal(null)} className="w-full bg-white text-black font-medium text-sm py-2 rounded-full">Close</button>
+                </div>
+              </div>
+            )}
+          </div>
+        );
+      }
+
+      ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    </script>
+  </body>
+</html>
