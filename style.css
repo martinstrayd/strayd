@@ -129,13 +129,28 @@
 
     .cta {
       display:inline-block;
-      padding:14px 34px;
+      padding:10px 24px;
       border:2px solid var(--pink);
       color:var(--pink);
       text-decoration:none;
       font-weight:400;
       letter-spacing:.08em;
-         font-size: 0.8rem;
+         font-size: 0.7rem;
+      text-transform:uppercase;
+      border-radius:6px;
+      margin-right:12px;
+      margin-bottom:12px;
+    }
+
+    .cta a {
+      display:inline-block;
+      padding:10px 24px;
+      border:2px solid var(--pink);
+      color:var(--pink);
+      text-decoration:none;
+      font-weight:400;
+      letter-spacing:.08em;
+         font-size: 0.7rem;
       text-transform:uppercase;
       border-radius:6px;
       margin-right:12px;
