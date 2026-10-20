@@ -175,6 +175,51 @@
             margin-top: 60px;
             border-top: 1px solid #222;
         }
+
+          .hero-bg {
+      position:absolute;
+      inset:0;
+      background:url("martin-strayd-anti-pop-rockstar-catalog-og.png") center/cover no-repeat fixed;
+      z-index:0;
+    }
+
+    /* Disable fixed background on mobile */
+    @media (max-width: 768px) {
+      .hero-bg { background-attachment: scroll; }
+    }
+
+    /* GRADIENT OVERLAY */
+    .hero-overlay {
+      position:absolute;
+      inset:0;
+      z-index:1;
+      background:linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.35) 0%,
+        rgba(0,0,0,0.65) 45%,
+        rgba(0,0,0,0.85) 100%
+      );
+    }
+
+    @media (max-width: 768px) {
+      .hero-overlay {
+        background:linear-gradient(
+          to bottom,
+          rgba(0,0,0,0.55) 0%,
+          rgba(0,0,0,0.78) 50%,
+          rgba(0,0,0,0.92) 100%
+        );
+      }
+    }
+
+    .hero-content {
+      position:relative;
+      z-index:2;
+      display:flex;
+      flex-direction:column;
+      min-height:100svh;
+    }
+
     </style>
 </head>
 <body>
