@@ -125,18 +125,12 @@
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-    <link rel="stylesheet" href="style.css">
 
   </head>
   <body class="bg-black text-white selection:bg-white selection:text-black">
-    <div id="root">   <div class="footer">
-© Martin Strayd - All music written by the artist
-</div>
-    </div>
+    <div id="root">   </div>
 
-  <div class="footer">
-© Martin Strayd - All music written by the artist
-</div>
+
     
     <script type="text/babel">
       const { useState, useEffect, useRef, useCallback } = React;
@@ -366,7 +360,9 @@
                    {/* 1464 STORIES */}
                 </span>
                 <span className="text-[25px] sm:text-[30px] text-white select-none leading-none" style={{ letterSpacing: '-0.02em' }}>
-               {/* ✳︎ */}
+               {/* ✳︎ */}   <div class="footer">
+© Martin Strayd - All music written by the artist
+</div>
                 </span>
               </div>
 
