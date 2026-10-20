@@ -121,10 +121,11 @@
 
     .description {
      font-size: 1.1rem;
-      max-width: 860px;
+      max-width: 555px;
       margin: 0 auto 36px;
       opacity: 0.95;
       line-height: 1.6;
+         
     }
 
     .cta {
