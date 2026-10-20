@@ -84,7 +84,7 @@
    margin-left: 15px;
       text-decoration: none;
       color: var(--pink);
-      font-weight: 600;
+      font-weight: 400;
       letter-spacing: 0.06em;
       font-size: 0.7rem;
     }
@@ -150,7 +150,7 @@
       text-decoration:none;
       font-weight:400;
       letter-spacing:.08em;
-         font-size: 0.7rem;
+         font-size: 0.1rem;
       text-transform:uppercase;
       border-radius:6px;
       margin-right:12px;
