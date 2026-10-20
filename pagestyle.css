@@ -68,7 +68,7 @@
 
 
 
-    header {
+    header { z-index:100;
       padding: 20px 40px;
       display: flex;
       justify-content: space-between;
@@ -182,7 +182,7 @@
       text-transform: uppercase;
     }
 
-    footer {
+    footer {  z-index:100;
       text-align: center;
       padding: 40px 20px;
       font-size: 0.85rem;
