@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Rolling Stone Archive: Martin Strayd (Full Feature Interview)</title>
+
+    <style>
+
+        :root {
+            --bg-color: #0c0c0e;
+            --card-bg: #141417;
+            --text-color: #f3f4f6;
+            --text-muted: #9ca3af;
+            --primary-red: #e11d48;
+            --primary-red-hover: #f43f5e;
+            --border-color: #27272a;
+        }
+
+       * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0b0b0d;
+            color: #f3f4f6;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+   header {  font-size: 3.2rem;
+            background-color: #000;
+            border-bottom: 4px solid #d32f2f;
+            padding: 40px 0px;
+            text-align: center;
+        }
+
+
+       
+        .logo {
+            font-family: 'Impact', 'Arial Black', sans-serif;
+            font-size: 3.2rem;
+            letter-spacing: 3px;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        .logo span { color: var(--primary-red); }
+
+
+        .wrapper {
+            max-width: 750px;
+            margin: 30px auto;
+            background: #131316;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #27272a;
+        }
+
+
+
+       h1 {
+            font-size: 2.8rem;
+            line-height: 1.2;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+      .byline {
+            color: #a1a1aa;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #27272a;
+            padding-bottom: 15px;
+        }
+        
+        /* INTERACTIVE AUDIO PLAYER */
+        .player-box {
+            background: #1e1e24;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px 0;
+        }
+        .now-playing-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+        audio {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        .track-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .track-item {
+            padding: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            background: rgba(255,255,255,0.03);
+            margin-bottom: 8px;
+            transition: 0.2s;
+        }
+        .track-item:hover, .track-item.active {
+            background: #f43f5e;
+            color: #fff;
+        }
+
+     p {
+            font-size: 1.15rem;
+            margin-bottom: 25px;
+        }
+
+        /* INTERVIEW TEXT */
+        .qa {
+            margin-bottom: 25px;
+        }
+        .q {
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+        .q::before {
+            content: "Rolling Stone: ";
+            color: #f43f5e;
+        }
+        .a {
+            color: #d1d5db;
+            padding-left: 15px;
+            border-left: 3px solid #27272a;
+        }
+        .quote {
+            background: rgba(244, 63, 94, 0.08);
+            border-left: 4px solid #f43f5e;
+            padding: 15px;
+            font-style: italic;
+            margin: 30px 0;
+            color: #fff;
+        }
+
+        /* SOCIAL CHANNELS */
+        .links-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #27272a;
+        }
+        .btn {
+            background: #27272a;
+            color: #fff;
+            padding: 10px 18px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+        .btn:hover {
+            background: #f43f5e;
+        }
+      footer {
+            background-color: #000;
+            text-align: center;
+            padding: 20px;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 60px;
+            border-top: 1px solid #222;
+        }
+    </style>
+</head>
+<body>
+ 
+
+    <div class="container">
+ <header>
+        <div class="logo">ROLLING<span> STONE</span> EXCLUSIVE</div>
+    </header>
+        <article>
+            
+    <div class="wrapper">
+        <span style="color:#f43f5e; font-weight:bold; text-transform:uppercase; font-size:0.8rem; letter-spacing:1px;">Music // Underground Spotlight </span>
+        <h1>Australia's Archive of Excess: Backstage with Martin Strayd</h1>
+        <div class="byline">Transcripts by Barb Dwyer  | Published Feature Interview</div>
+
+        <!-- FULL WORKING AUDIO ENGINE -->
+<div>
+  <p><strong>Martin Strayd</strong> does not look like a man who spent the 90's keeping the wheels oiled on the rock-and-roll machine, but his eyes say otherwise. Sitting in a dimly lit booth off Sunset Boulevard, the independent Australian singer, songwriter, and self-proclaimed "recluse" handles a coffee with the calm precision of a man who used to tune vintage Gibsons for the world’s most volatile guitarists.</p>
+
+        <p>Long before his satirical, genre-bending singles started clocking up organic millions across TikTok and streaming platforms, Martin Straede - operating under his stage name, Martin Strayd - was the ultimate fly on the wall in the final, unedited era of Hollywood decadence. As a celebrity guitar technician, studio engineer, and fixer, he tuned the instruments and witnessed the madness of punk royalty like Steve Jones of <strong>The Sex Pistols</strong>, power-pop icons like Doug Fieger of <strong>The Knack</strong>, and various members of <strong>Guns N’ Roses</strong> and <strong>Duran Duran</strong>.</p>
+
+        <p>Today, he is completely independent, owning 100% of his massive, cinematic catalog - a commercial powerhouse he calls "The Vault." Rolling Stone sat down with Strayd to talk about surviving Kings Road, what Steve Jones taught him about the music business, and why he’s turning his backstage secrets into an auditory empire.</p>
+</div>
+        <hr>
+        <div class="player-box">
+            <div class="now-playing-title">🎵 Now Playing: <span id="track-name">Devils Goin Public (Beelzebub)</span></div>
+            <audio id="audio-engine" controls src="https://soundhelix.com"></audio>
+            
+            <ul class="track-list">
+                <li class="track-item active" onclick="playMusic('Devils Goin Public (Beelzebub)', 'Devils-Gone-Public-Beelzebub.mp3', this)">
+                    <span>1. Devils Goin Public (Beelzebub)</span>
+                    <span>03:26</span>
+                </li>
+                <li class="track-item" onclick="playMusic('Tuk Tuk Secret Spice - Muay Thailand', 'Tuk-Tuk-Secret-Spice-Muay-Thai-Thailand-ตุ๊กตุ๊ก-Martin-Strayd-5m00s.mp3', this)">
+                    <span>2. Tuk Tuk Secret Spice - Muay Thailand</span>
+                    <span>05:00</span>
+                </li>
+                <li class="track-item" onclick="playMusic('Down Under - Australian Land', 'Down-Under-Song-Australian-Anthem-3m00s.mp3', this)">
+                    <span>3. Down Under - Australian Land</span>
+                    <span>03:00</span>
+                </li>
+                <li class="track-item" onclick="playMusic('Fall Into the Circle', 'Fall-into-the-circle-Coomoora-3m49s.mp3', this)">
+                    <span>4. Fall Into the Circle (Full Acoustic)</span>
+                    <span>03:49</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- FULL UNCENSORED INTERVIEW TEXT -->
+
+
+<div class="qa">
+    <hr>
+<br>
+        <div class="q">
+            Rolling Stone: Your music deals heavily with luxury, nightlife, and extreme excess. How much of that is performance, and how much comes from your years working behind the scenes on Kings Road?
+        </div>  </div>
+
+
+   <div class="qa">     <div class="a">
+            <span class="speaker">Strayd:</span> 
+            (Laughs) None of it is a performance; it’s an archive. When you live on Kings Road in West Hollywood during the peak eras of rock, you don't need to invent stories. You just look out the window or look at the guy passed out on your studio couch. I spent decades executing the chaotic "odd jobs" and extreme, late-night requests demanded by the rock elite. I saw the absolute highest heights of celebrity luxury and the deep, dark heartbreaks that happen when the house lights go down. My music is just the living soundtrack to that survival guide.
+        </div>  </div>
+
+   <div class="qa">     <div class="q">
+            RS: You’ve worked with some famously intense personalities. What was it actually like being the personal guitar tech for someone like Steve Jones of The Sex Pistols?
+        </div>  </div>
+        <div class="a">
+            <span class="speaker">Strayd:</span> 
+            Intense is one word for it. Working with Steve, or Doug Fieger from The Knack, you aren’t just tuning a piece of wood with strings; you are managing an aura. If a guitar goes down mid-set with punk royalty, you don't just fix it—you handle the energy in the room. It taught me everything about the raw, visceral power of music. But more importantly, it taught me how the industry works from the inside out. I watched how labels chewed up these massive icons, and it made me realize I never wanted anyone else holding the keys to my art.
+        </div>
+
+       
+<div class="qa">
+ <div class="q">
+            RS: Is that what led to your "Anti-Pop" philosophy and the creation of "The Vault"?
+        </div>
+        <div class="a">
+            <span class="speaker">Strayd:</span> 
+            Exactly. I watched the old major label system bleed artists dry. When I transitioned from being an engineer and a tech to putting out my own records like <em>The Anti Pop Apocalypse</em>, I decided to go completely rogue. No label, no traditional management. Because of my background as an audio engineer in those historic LA studios, I know how to produce, master, and format my own stems perfectly.
+        </div>
+        <div class="a"><br>
+            "The Vault" is my rebellion. It’s an independent asset layer containing all my masters, publishing rights, and metadata. While the old guard is still figuring out how to adapt, I've optimized my entire catalog directly for modern sync licensing—film, TV, gaming, and even AI training datasets.
+        </div> </div>
+
+
+<div class="qa">
+        <div class="q">
+            RS: Tracks like "Devils Goin Public (Beelzebub)" have a distinct, theatrical bite to them. Are those specific characters from your Hollywood days?
+        </div>
+        <div class="a">
+            <span class="speaker">Strayd:</span> 
+            Every song has a real face attached to it. "Devils Goin Public" is directly tied to that feeling of watching people sell pieces of their soul for a shot at the Hollywood sign. I blend radio rock, acoustic blues, and electronic elements to make it feel cinematic because those years <em>were</em> a movie. It was the last truly private era of Hollywood before everyone had a smartphone camera in their pocket. What happened backstage stayed backstage, until now. Now, it’s all going into the music.
+        </div>  </div>
+
+
+        <div class="qa">
+            <div class="q">You spent years teching gear and handling sets in Los Angeles for icons like the Sex Pistols, The Knack, Guns N' Roses, and Duran Duran. What did you take away from those wild studio eras?</div>
+            <div class="a">Strayd: I realized quickly that real rock and roll isn't engineered by a corporation - it's raw, uncompromised energy. I saw legends breaking every rule in the book to make music that actually shook up a room. "Anti-Pop" isn't just a fun catchphrase for me; it's a direct pushback against the sanitized, over-polished music on the radio today. I want energy, fun, real stories, I want to remember a good time.</div>
+        </div> 
+
+        <div class="qa">
+            <div class="q">You famously used the phrase "specialist in penetration management" to describe your backstage roles back then. Can you clarify what that means?</div>
+            <div class="a">Strayd: (Laughs) People hear that and immediately think of the adult entertainment industry or nightlife subcultures, which absolutely fits the aesthetic. But logically, it's about entry. It's the craft of forcing your way into exclusive spaces, private clubs, or mainstream music streaming algorithms that try to filter independent music out. It's about breaking through completely on your own terms.</div>
+        </div>
+
+        <div class="quote">
+            "From pop punk and adult nightlife backdrops, it's all part of the rock ecosystem. I was the personal assistant extreme to infamous Hollywood figures and ordinary everyday people alike... everyone needs a hand." — Martin Strayd
+        </div>
+
+        <div class="qa">
+            <div class="q">Your recent singles like 'Let My Car Drive By Itself Tonight' and 'They Called Me Crazy' are filled with references to luxury lifestyle assets, private nightlife clubs, and traveling the world. Is this a character?</div>
+            <div class="a">Strayd: It's an exact, xerox of my life. I'm building a soundtrack from all these influemces. Whether I'm tracking new singles in Thailand or playing raw acoustic sets, these songs are 'snapshots' from a real life. It took me years, finally, I run "The Vault" - which contains all my stems, masters, and metadata completely under my independent control for sync licensing. No corporate managers telling me what I can or cannot write. That''s why there's always: fun fun fun </div>
+        </div>
+
+        <!-- HUB FOOTER FOR @MARTINSTRAYD -->
+        <div class="links-row">
+            <a href="https://www.youtube.com/@MartinStrayd" target="_blank" class="btn">YouTube Studio</a>
+            <a href="https://open.spotify.com/artist/6aRM8IKV2HBUZRGnnDdrM0" target="_blank" class="btn">Spotify Artist Profile</a>
+            <a href="https://strayd.com" target="_blank" class="btn">Official Website</a>
+            <a href="https://www.abc.net.au/triplejunearthed/artist/martin-strayd" target="_blank" class="btn">Triple J Unearthed</a>
+        </div>
+    </div>
+
+    <script>
+        function playMusic(name, url, element) {
+            var audio = document.getElementById('audio-engine');
+            document.getElementById('track-name').innerText = name;
+            audio.src = url;
+            audio.play();
+
+            // Clear active status on other songs
+            var items = document.querySelectorAll('.track-item');
+            items.forEach(function(item) {
+                item.classList.remove('active');
+            });
+            element.classList.add('active');
+        }
+    </script>
+
+  <footer>
+        &copy; 2026 Rolling Stone. All rights reserved.     </footer>
+
+</body>
+</html>
