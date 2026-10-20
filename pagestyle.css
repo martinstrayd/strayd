@@ -129,6 +129,7 @@
       color:var(--pink);
       text-decoration:none;
       font-weight:400;
+             font-size: 0.7rem;
       letter-spacing:.08em;
       text-transform:uppercase;
       border-radius:5px;
