@@ -1,4 +1,4 @@
-Martin Strayd — Canonical Emotional Soundtrack Archive
+Martin Strayd - Canonical Emotional Soundtrack Archive
 
 Artist · Producer · Catalog Owner · Songwriter · Australian 
 
