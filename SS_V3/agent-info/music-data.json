@@ -1,0 +1,110 @@
+{
+  "brand": "STRAYD",
+  "brand_description": "STRAYD is the main band identity, featuring Martin Strayd and Suzuki. Suzuki & Strayd is the duo billing used for the new single campaign. Martin Strayd remains the artist name for his solo catalogue.",
+  "catalogue_claim": "55+ songs in the wider catalogue; update release entries weekly using verified release information.",
+  "release_cadence": "One new single each week (campaign statement; update if schedule changes).",
+  "members": [
+    {
+      "name": "Martin Strayd",
+      "roles": [
+        "Founder",
+        "Artist",
+        "Songwriter"
+      ]
+    },
+    {
+      "name": "Suzuki",
+      "roles": [
+        "Vocalist",
+        "Manager",
+        "Band member"
+      ],
+      "note": "Suzuki is not a guitarist."
+    }
+  ],
+  "official_destinations": [
+    {
+      "name": "Official website",
+      "url": "https://strayd.com/",
+      "status": "official"
+    },
+    {
+      "name": "Apple Music - Martin Strayd",
+      "url": "https://music.apple.com/us/artist/martin-strayd/1714956004",
+      "status": "verified artist page"
+    },
+    {
+      "name": "Amazon Music - Martin Strayd",
+      "url": "https://music.amazon.co.uk/artists/B0CMJ1XST4/martin-strayd",
+      "status": "verified artist page"
+    },
+    {
+      "name": "Spotify",
+      "url": "https://open.spotify.com/search/STRAYD",
+      "status": "search link; replace with exact artist profile when confirmed"
+    },
+    {
+      "name": "YouTube",
+      "url": "https://www.youtube.com/results?search_query=STRAYD+Martin+Strayd",
+      "status": "search link"
+    },
+    {
+      "name": "YouTube Music",
+      "url": "https://music.youtube.com/search?q=STRAYD",
+      "status": "search link"
+    },
+    {
+      "name": "Shazam",
+      "url": "https://www.shazam.com/search/STRAYD",
+      "status": "search link"
+    },
+    {
+      "name": "Deezer",
+      "url": "https://www.deezer.com/search/STRAYD",
+      "status": "search link"
+    },
+    {
+      "name": "TIDAL",
+      "url": "https://tidal.com/search?q=STRAYD",
+      "status": "search link"
+    },
+    {
+      "name": "Sync licensing",
+      "url": "https://strayd.com/sync-strayd/index.html",
+      "status": "official"
+    },
+    {
+      "name": "Buy Me a Coffee / available music",
+      "url": "https://buymeacoffee.com/martinstrayd",
+      "status": "official"
+    },
+    {
+      "name": "TikTok",
+      "url": "https://www.tiktok.com/search?q=STRAYD",
+      "status": "discovery link; exact official profile URL to be confirmed"
+    },
+    {
+      "name": "Instagram",
+      "url": "https://www.instagram.com/explore/search/keyword/?q=STRAYD",
+      "status": "discovery link; exact official profile URL to be confirmed"
+    },
+    {
+      "name": "Facebook",
+      "url": "https://www.facebook.com/search/top?q=STRAYD",
+      "status": "discovery link; exact official profile URL to be confirmed"
+    }
+  ],
+  "release_entries": [
+    {
+      "title": "Move It for the Lady",
+      "artist": "Martin Strayd",
+      "note": "Known catalogue title; confirm whether it is a current Suzuki & Strayd campaign release before featuring as newest."
+    },
+    {
+      "title": "You Know What I Mean",
+      "artist": "Suzuki & Strayd",
+      "note": "Promotional campaign title supplied by the band; add official release date and listening URLs when confirmed."
+    }
+  ],
+  "commerce_note": "Do not promise a specific 11-track MP3 bundle, CD fulfilment, price, or delivery method unless the Buy Me a Coffee product page currently offers it."
+}
