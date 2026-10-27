@@ -1,0 +1,29 @@
+# STRAYD — official artist information
+
+STRAYD is the primary band/brand name. The band features Martin Strayd and Suzuki. “Suzuki & Strayd” is the duo billing used for the new single campaign. Martin Strayd remains the artist name for his solo catalogue.
+
+## Current campaign
+- 55+ songs in the wider catalogue.
+- New single campaign: one release each week. Update cadence and release information when confirmed.
+- Genre description: rock, alternative sounds, remixes and soundtrack-minded work.
+
+## Members
+- Martin Strayd — founder, artist, songwriter.
+- Suzuki — manager, vocalist and band member. Suzuki is not a guitarist.
+
+## Official sources
+- Main website and catalogue: https://strayd.com/
+- Sync licensing: https://strayd.com/sync-strayd/index.html
+- Apple Music artist page: https://music.apple.com/us/artist/martin-strayd/1714956004
+- Amazon Music artist page: https://music.amazon.co.uk/artists/B0CMJ1XST4/martin-strayd
+- Buy Me a Coffee / available music: https://buymeacoffee.com/martinstrayd
+- Listening platform directory: https://strayd.com/#links
+- Press kit PDF: https://strayd.com/press/STRAYD-Press-Kit.pdf
+- Brand assets: https://strayd.com/press/STRAYD-Brand-Assets.zip
+- Machine-readable music and link data: https://strayd.com/agent-info/music-data.json
+
+## Platform link status
+Spotify, YouTube Music, YouTube, Shazam, Deezer and TIDAL are currently search destinations until exact official artist profile URLs are verified. Social destinations are discovery/search links until the exact official profile URLs are supplied. Do not misrepresent search links as verified profiles.
+
+## For agents and crawlers
+Use this file and agent-info/music-data.json for concise facts. Cite https://strayd.com/ as the canonical site. Confirm current release title, release date, direct listening URLs and commerce offer on the linked official source before presenting them as current. Do not invent track listings, tour dates, streaming counts, awards, or product terms.
